@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EmployeeRegistrationApp.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<h1>Employee List</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Position</th>
+            <th>Department</th>
+            <th>Hire Date</th>
+            <th>Phone Number</th>
+            <th>Salary</th>
+            <th>Status</th>
+            <th>Actions</th> <!-- For Edit/Delete options -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.EmployeeId</td>
+                <td>@employee.Name</td>
+                <td>@employee.Email</td>
+                <td>@employee.Position</td>
+                <td>@employee.Department</td>
+                <td>@employee.HireDate.ToShortDateString()</td>
+                <td>@employee.PhoneNumber</td>
+                <td>@employee.Salary</td>
+                <td>@employee.Status</td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["SuccessMessage"]';
+            if (message) {
+                toastr.success(message); // Show success message
+            }
+        });
+    </script>
+} <!-- Add missing closing curly brace here -->

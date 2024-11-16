@@ -1,0 +1,70 @@
+﻿@model EmployeeRegistrationApp.Models.EmployeeViewModel
+
+<h1>Create Employee</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Employee.Name"></label>
+        <input asp-for="Employee.Name" class="form-control" />
+        <span asp-validation-for="Employee.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Employee.Email"></label>
+        <input asp-for="Employee.Email" class="form-control" />
+        <span asp-validation-for="Employee.Email" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Employee.Position"></label>
+        <select asp-for="Employee.Position" asp-items="Model.PositionList" class="form-control">
+            <option value="">Select Position</option>
+        </select>
+        <span asp-validation-for="Employee.Position" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Employee.Department"></label>
+        <select asp-for="Employee.Department" asp-items="Model.DepartmentList" class="form-control">
+            <option value="">Select Department</option>
+        </select>
+        <span asp-validation-for="Employee.Department" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Employee.HireDate"></label>
+        <input asp-for="Employee.HireDate" class="form-control" type="date" />
+        <span asp-validation-for="Employee.HireDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Employee.PhoneNumber"></label>
+        <input asp-for="Employee.PhoneNumber" class="form-control" />
+        <span asp-validation-for="Employee.PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Employee.Salary"></label>
+        <input asp-for="Employee.Salary" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Employee.Salary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Employee.Status"></label>
+        <select asp-for="Employee.Status" class="form-control">
+            <option value="">Select Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+        </select>
+        <span asp-validation-for="Employee.Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
